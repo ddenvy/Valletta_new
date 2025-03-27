@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Установка pnpm
+RUN npm install -g pnpm
+
+# Копируем только файлы, необходимые для установки зависимостей
+COPY package*.json pnpm-lock.yaml ./
+
+# Установка зависимостей
+RUN pnpm install
+
+# Копируем остальные файлы
+COPY . .
+
+# Запуск в режиме разработки
+CMD ["pnpm", "run", "dev"] 

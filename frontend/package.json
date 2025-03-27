@@ -1,0 +1,38 @@
+{
+  "name": "valletta-crm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.1.1",
+    "@popperjs/core": "^2.11.8",
+    "@types/uuid": "^10.0.0",
+    "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+    "date-fns": "^3.6.0",
+    "jwt-decode": "^4.0.0",
+    "next": "^15.0.0",
+    "react": "^18.3.0",
+    "react-big-calendar": "^1.11.2",
+    "react-day-picker": "^8.10.0",
+    "react-dom": "^18.3.0",
+    "react-dropzone": "^14.3.8",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.24",
+    "@types/react": "18.3.18",
+    "@types/react-big-calendar": "^1.16.1",
+    "@types/react-dom": "^18.2.6",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss-import": "^16.1.0",
+    "typescript": "5.8.2"
+  }
+}

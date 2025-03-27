@@ -1,0 +1,1041 @@
+/* Импортируем Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Добавляем правильный импорт CSS для react-big-calendar */
+@import '../node_modules/react-big-calendar/lib/css/react-big-calendar.css';
+
+:root {
+  --bs-primary: #0d6efd;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary: #6c757d;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success: #198754;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info: #0dcaf0;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning: #ffc107;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger: #dc3545;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light: #f8f9fa;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark: #212529;
+  --bs-dark-rgb: 33, 37, 41;
+  --bs-body-color: #212529;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg: #fff;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-border-color: #dee2e6;
+  --bs-border-color-rgb: 222, 226, 230;
+}
+
+/* Переменные для темной темы */
+[data-bs-theme=dark] {
+  --bs-body-color: #dee2e6;
+  --bs-body-color-rgb: 222, 226, 230;
+  --bs-body-bg: #212529;
+  --bs-body-bg-rgb: 33, 37, 41;
+  --bs-border-color: #495057;
+  --bs-border-color-rgb: 73, 80, 87;
+  --bs-primary: #0d6efd;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary: #6c757d;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success: #198754;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info: #0dcaf0;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning: #ffc107;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger: #dc3545;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light: #343a40;
+  --bs-light-rgb: 52, 58, 64;
+  --bs-dark: #f8f9fa;
+  --bs-dark-rgb: 248, 249, 250;
+}
+
+/* Основные стили для body */
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Сайдбар */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: var(--bs-body-bg);
+  border-right: 1px solid var(--bs-border-color);
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar-collapsed {
+  width: 70px;
+}
+
+.sidebar-expanded {
+  width: 250px;
+}
+
+.sidebar-header {
+  height: 60px;
+  background-color: var(--bs-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem 0 1rem;
+  position: relative;
+}
+
+.sidebar-header button {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--bs-secondary);
+  border: 1px solid var(--bs-border-color);
+  background-color: var(--bs-body-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar-expanded .sidebar-header button {
+  right: -14px;
+}
+
+.sidebar-header button:hover {
+  background-color: var(--bs-light);
+  color: var(--bs-primary);
+}
+
+.sidebar-header button .icon-base {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: var(--bs-body-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 0.375rem;
+  margin: 0.25rem 0.5rem;
+}
+
+.sidebar-collapsed .nav-link {
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.nav-link:hover {
+  background-color: var(--bs-light);
+  color: var(--bs-primary);
+}
+
+.nav-link.active {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.nav-link.active:hover {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+/* Иконки */
+.icon-base {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-lg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Карточки */
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--bs-border-color);
+  padding: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Списки */
+.list-group-item {
+  border: none;
+  padding: 1rem;
+}
+
+.list-group-item:not(:last-child) {
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* Кнопки */
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--bs-secondary);
+  background-color: transparent;
+  border: 1px solid var(--bs-border-color);
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: var(--bs-light);
+  color: var(--bs-primary);
+}
+
+[data-bs-theme=dark] .btn-icon:hover {
+  background-color: var(--bs-light);
+  color: var(--bs-primary);
+}
+
+/* Бейджи */
+.badge {
+  padding: 0.5em 0.75em;
+  font-weight: 500;
+  border-radius: 0.375rem;
+}
+
+/* Анимации */
+.transition-transform {
+  transition: transform 0.2s ease;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Формы */
+.form-control.ps-5 {
+  padding-left: 2.5rem;
+}
+
+/* Кнопки */
+.btn-outline-secondary.active {
+  background-color: var(--bs-secondary);
+  color: white;
+}
+
+/* Карточки */
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Сворачивание */
+.collapse {
+  transition: all 0.3s ease;
+}
+
+/* Кнопки */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  opacity: 0.9;
+}
+
+.btn-primary .icon-sm {
+  margin-right: 0.5rem;
+}
+
+/* Стили для таблиц */
+.table-container {
+  background-color: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--bs-border-color);
+  overflow: hidden;
+}
+
+.theme-toggle-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--bs-body-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--bs-light);
+}
+
+/* Исправляем стили для иконок */
+.h-5 {
+  height: 1.25rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+/* Исправленные стили для позиционирования */
+.object-contain {
+  object-fit: contain;
+}
+
+/* Дополнительные стили для выравнивания */
+.gap-3 {
+  gap: 0.75rem;
+}
+
+/* Стили для таблицы кандидатов */
+.candidates-table td {
+  vertical-align: middle;
+  max-width: 200px;
+  padding: 0.5rem;
+}
+
+.candidates-table .text-cell {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-height: 24px;
+}
+
+.editable-cell {
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  min-height: 24px;
+}
+
+.editable-cell:hover {
+  background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.salary-editor {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: var(--bs-body-bg) !important;
+  border: 1px solid var(--bs-border-color) !important;
+  animation: fadeIn 0.2s ease-in-out;
+  z-index: 9999 !important;
+  max-width: 90vw;
+  border-radius: 0.375rem;
+  width: 320px;
+}
+
+.dark-theme-salary-editor {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.candidates-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.candidates-table {
+  width: 100% !important;
+  table-layout: auto;
+}
+
+/* Стили для фиксированного заголовка страницы */
+.sticky-top.bg-body {
+  background-color: var(--bs-body-bg) !important;
+  border-bottom: 1px solid var(--bs-border-color);
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-bs-theme=dark] .sticky-top.bg-body {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Контейнер для прокручиваемого содержимого */
+.overflow-auto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bs-secondary) transparent;
+}
+
+.overflow-auto::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.overflow-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb {
+  background-color: var(--bs-secondary);
+  border-radius: 4px;
+}
+
+.overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: var(--bs-dark);
+}
+
+[data-bs-theme=dark] .overflow-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-bs-theme=dark] .overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Стили для модальных окон */
+.modal-backdrop {
+  z-index: 1040;
+}
+
+.modal.show {
+  z-index: 1050;
+}
+
+.modal-content {
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme=dark] .modal-content {
+  background-color: var(--bs-body-bg);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Стили для различных статусов */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-Новый {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+}
+
+.status-Скрининг {
+  background-color: #fff8e1;
+  color: #ffc107;
+}
+
+.status-Интервью {
+  background-color: #e8f5e9;
+  color: #198754;
+}
+
+.status-Тестовое {
+  background-color: #f3e5f5;
+  color: #6f42c1;
+}
+
+.status-Оффер {
+  background-color: #e8f5e9;
+  color: #198754;
+}
+
+.status-Отказ {
+  background-color: #ffebee;
+  color: #dc3545;
+}
+
+.status-Принят {
+  background-color: #e8f5e9;
+  color: #198754;
+}
+
+.status-Архив {
+  background-color: #f5f5f5;
+  color: #6c757d;
+}
+
+/* Стили для иконок */
+.icon-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon-md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Базовые стили для всех иконок */
+.icon-base {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--bs-secondary);
+}
+
+/* Стили для иконок в таблицах */
+.table-sort-icon {
+  composes: icon-base;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-left: 0.25rem;
+}
+
+/* Стили для иконок в кнопках фильтров */
+.filter-btn-icon {
+  composes: icon-base;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Стили для иконок в кнопках действий */
+.action-btn-icon {
+  composes: icon-base;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Стили для иконок в отделах */
+.department-icon {
+  composes: icon-base;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* Стили для кнопки добавления */
+.add-button-icon {
+  composes: icon-base;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Стили для иконок в таблицах */
+.table-action-icon {
+  composes: icon-base;
+  width: 1rem;
+  height: 1rem;
+  color: var(--bs-secondary);
+  transition: color 0.2s ease-in-out;
+}
+
+[data-bs-theme=dark] .table-action-icon {
+  color: var(--bs-gray-400);
+}
+
+/* Стили для кнопок действий */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-icon:hover {
+  background-color: var(--bs-gray-200);
+}
+
+[data-bs-theme=dark] .btn-icon:hover {
+  background-color: var(--bs-gray-700);
+}
+
+/* Стили для бейджей */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 0.375rem;
+  gap: 0.25rem;
+}
+
+/* Icon styles */
+.icon-base {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--bs-secondary);
+}
+
+.add-button-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.filter-btn-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.action-btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Transitions */
+.transition-transform {
+  transition: transform 0.2s ease-in-out;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Form controls */
+.form-control.ps-5 {
+  padding-left: 2.5rem !important;
+}
+
+/* Button states */
+.btn-outline-secondary.active {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+/* Card styles */
+.card {
+  --bs-card-cap-padding-y: 1rem;
+  --bs-card-cap-padding-x: 1rem;
+}
+
+.card-body {
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+}
+
+/* Collapse animation */
+.collapse {
+  transition: height 0.35s ease;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+}
+
+.btn-primary .icon-sm {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+/* Основной контейнер страницы */
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 250px);
+  overflow: hidden;
+}
+
+/* Когда сайдбар свернут */
+.sidebar-collapsed + .page-container {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+/* Контейнер для контента */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Контейнер для вакансий */
+.vacancies-container {
+  width: 100%;
+  height: calc(100vh - 180px);
+  background: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--bs-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.vacancies-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Канбан доска */
+.kanban-board {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0 1rem 1rem 0;
+  align-items: flex-start;
+  height: calc(100vh - 140px);
+}
+
+.kanban-column {
+  min-width: 350px;
+  max-width: 350px;
+  background: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  height: 800px; /* Фиксированная высота для ~2 вакансий */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--bs-border-color);
+}
+
+.kanban-column-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--bs-body-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bs-primary);
+  flex-shrink: 0;
+}
+
+.kanban-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.vacancy-card {
+  background: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 300px; /* Минимальная высота карточки */
+}
+
+.vacancy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.vacancy-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--bs-body-color);
+}
+
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background-color: var(--bs-success);
+  color: white;
+}
+
+.status-badge.closed {
+  background-color: var(--bs-secondary);
+  color: white;
+}
+
+.vacancy-details {
+  margin-bottom: 1rem;
+}
+
+.vacancy-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--bs-secondary);
+}
+
+.vacancy-details strong {
+  color: var(--bs-body-color);
+}
+
+.vacancy-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.vacancy-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Стилизация скроллбара */
+.kanban-column-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: var(--bs-body-bg);
+}
+
+.kanban-column-content::-webkit-scrollbar-track {
+  background: var(--bs-body-bg);
+  border-radius: 4px;
+}
+
+.kanban-column-content::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary);
+  border-radius: 4px;
+  border: 2px solid var(--bs-body-bg);
+}
+
+.kanban-column-content::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}
+
+/* Темная тема */
+[data-bs-theme=dark] .kanban-column-content::-webkit-scrollbar-thumb {
+  border-color: var(--bs-body-bg);
+  background: var(--bs-secondary);
+}
+
+[data-bs-theme=dark] .kanban-column-content::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}
+
+/* Стили для дашборда */
+.dashboard-container {
+  background-color: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  border: 1px solid var(--bs-border-color);
+  height: calc(100vh - 180px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  margin-right: 0; /* Убираем правый отступ */
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  margin-right: 0; /* Убираем правый отступ */
+}
+
+.dashboard-card {
+  background: var(--bs-body-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  min-width: 300px;
+}
+
+.dashboard-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--bs-body-color);
+  margin: 0;
+}
+
+.dashboard-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--bs-primary);
+}
+
+.dashboard-stat-label {
+  color: var(--bs-secondary);
+  font-size: 0.9rem;
+}
+
+/* Стилизация скроллбара для дашборда */
+.dashboard-grid::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dashboard-grid::-webkit-scrollbar-track {
+  background: var(--bs-body-bg);
+  border-radius: 4px;
+}
+
+.dashboard-grid::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary);
+  border-radius: 4px;
+}
+
+.dashboard-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}
+
+/* Темная тема для дашборда */
+[data-bs-theme=dark] .dashboard-card {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-border-color);
+}
+
+[data-bs-theme=dark] .dashboard-grid::-webkit-scrollbar-track {
+  background: var(--bs-body-bg);
+}
+
+[data-bs-theme=dark] .dashboard-grid::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary);
+}
+
+[data-bs-theme=dark] .dashboard-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}
+
+/* Стилизация скроллбара */
+.kanban-board::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: var(--bs-body-bg);
+}
+
+.kanban-board::-webkit-scrollbar-track {
+  background: var(--bs-body-bg);
+  border-radius: 4px;
+}
+
+.kanban-board::-webkit-scrollbar-thumb {
+  background: var(--bs-secondary);
+  border-radius: 4px;
+  border: 2px solid var(--bs-body-bg);
+}
+
+.kanban-board::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}
+
+/* Темная тема */
+[data-bs-theme=dark] .kanban-board::-webkit-scrollbar-thumb {
+  border-color: var(--bs-body-bg);
+  background: var(--bs-secondary);
+}
+
+[data-bs-theme=dark] .kanban-board::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary);
+}

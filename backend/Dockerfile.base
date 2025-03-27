@@ -1,0 +1,16 @@
+FROM alpine:3.19
+
+# Установка необходимых пакетов
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    python3 \
+    make \
+    g++ \
+    git
+
+# Установка pnpm
+RUN npm install -g pnpm
+
+# Создание рабочей директории
+WORKDIR /app 
